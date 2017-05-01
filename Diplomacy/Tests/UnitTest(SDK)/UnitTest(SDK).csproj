@@ -60,7 +60,9 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="MEF\ExportAmbassadorAttributeTests.cs" />
     <Compile Include="MEF\ExportClerkAttributeTests.cs" />
+    <Compile Include="MEF\ExportPluginAttributeTests.cs" />
     <Compile Include="ResultCodeTests.cs" />
     <Compile Include="ResultTests.cs" />
     <Compile Include="RouteInfoTests.cs" />

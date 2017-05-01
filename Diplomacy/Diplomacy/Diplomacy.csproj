@@ -45,6 +45,7 @@
     <Compile Include="Dispatch.cs" />
     <Compile Include="FrontDesk.cs" />
     <Compile Include="IConsulControl.cs" />
+    <Compile Include="PluginHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

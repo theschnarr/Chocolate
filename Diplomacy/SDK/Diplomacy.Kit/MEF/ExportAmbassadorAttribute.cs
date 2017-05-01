@@ -8,17 +8,17 @@ using System.Threading.Tasks;
 namespace Diplomacy.Kit.MEF
 {
     /// <summary>
-    /// Used to provide discovery details needed to find and validate <see cref="IClerk"/> plugins. 
+    /// Used to provide discovery details needed to find and validate <see cref="IAmbassador"/> plugins. 
     /// </summary>
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false), MetadataAttribute]
-    public class ExportClerkAttribute : ExportAttribute, IPluginData
+    public class ExportAmbassadorAttribute : ExportAttribute, IPluginData
     {
         /// <summary>
-        /// Creates a new istance of <see cref="ExportClerkAttribute"/>.
+        /// Creates a new istance of <see cref="ExportAmbassadorAttribute"/>.
         /// </summary>
         /// <param name="id">Type: <see cref="String"/><para>The unique ID to use for the metadata.</para></param>
         /// <param name="providerID">Type: <see cref="String"/><para>The unique ID of the provider of the plugin.</para></param>
-        public ExportClerkAttribute(string id, string providerID) : base(typeof(IClerk))
+        public ExportAmbassadorAttribute(string id, string providerID) : base(typeof(IAmbassador))
         {
             ID = id;
             ProviderID = providerID;

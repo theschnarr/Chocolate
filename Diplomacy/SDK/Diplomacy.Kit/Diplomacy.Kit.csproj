@@ -45,7 +45,11 @@
     <Compile Include="IAmbassador.cs" />
     <Compile Include="IClerk.cs" />
     <Compile Include="IConsulRequest.cs" />
+    <Compile Include="IPlugin.cs" />
+    <Compile Include="IPluginData.cs" />
+    <Compile Include="MEF\ExportAmbassadorAttribute.cs" />
     <Compile Include="MEF\ExportClerkAttribute.cs" />
+    <Compile Include="MEF\ExportPluginAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Result.cs" />
     <Compile Include="RouteInfo.cs" />
