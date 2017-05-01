@@ -80,6 +80,7 @@ namespace Diplomacy.Tests
             var value = dispatch.GetAmbassador("SampleAmbassador");
             Assert.IsNotNull(value);
             Assert.AreEqual("SampleAmbassador", value.ID);
+            CollectionAssert.AreEquivalent(new List<string>() { "Mail", "WordCount" }, value.SupportedActions.ToList());
         }
         [TestMethod]
         public void GetAmbassadorBadTest()
