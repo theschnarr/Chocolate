@@ -24,6 +24,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest(SDK)", "Tests\Unit
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiplomacyTests", "DiplomacyTests\DiplomacyTests.csproj", "{9D913C9A-97B4-40E8-A2AD-A32DBD8090B0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PluginDiscovery", "apps\PluginDiscovery\PluginDiscovery.csproj", "{13F189A7-F761-4B57-A207-AB3D9AE69087}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -46,6 +48,10 @@ Global
 		{9D913C9A-97B4-40E8-A2AD-A32DBD8090B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9D913C9A-97B4-40E8-A2AD-A32DBD8090B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9D913C9A-97B4-40E8-A2AD-A32DBD8090B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13F189A7-F761-4B57-A207-AB3D9AE69087}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13F189A7-F761-4B57-A207-AB3D9AE69087}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13F189A7-F761-4B57-A207-AB3D9AE69087}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13F189A7-F761-4B57-A207-AB3D9AE69087}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -58,5 +64,6 @@ Global
 		{8A1F9370-CE59-4766-B0B3-2546D9CB987F} = {A30A3FE1-72F4-46E8-98D7-AF80AD837DCF}
 		{7790AB39-EFF8-475D-8B59-DEB70167EEF3} = {8A1F9370-CE59-4766-B0B3-2546D9CB987F}
 		{9D913C9A-97B4-40E8-A2AD-A32DBD8090B0} = {8A1F9370-CE59-4766-B0B3-2546D9CB987F}
+		{13F189A7-F761-4B57-A207-AB3D9AE69087} = {33F16132-D481-4B62-9B5D-5DA16B839C9B}
 	EndGlobalSection
 EndGlobal
