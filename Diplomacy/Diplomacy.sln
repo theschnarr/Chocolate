@@ -26,6 +26,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiplomacyTests", "Diplomacy
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PluginDiscovery", "apps\PluginDiscovery\PluginDiscovery.csproj", "{13F189A7-F761-4B57-A207-AB3D9AE69087}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PluginDiscoveryTests", "apps\PluginDiscoveryTests\PluginDiscoveryTests.csproj", "{209F0FFD-19E0-40CC-AB57-A9485A954F95}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -52,6 +54,10 @@ Global
 		{13F189A7-F761-4B57-A207-AB3D9AE69087}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{13F189A7-F761-4B57-A207-AB3D9AE69087}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{13F189A7-F761-4B57-A207-AB3D9AE69087}.Release|Any CPU.Build.0 = Release|Any CPU
+		{209F0FFD-19E0-40CC-AB57-A9485A954F95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{209F0FFD-19E0-40CC-AB57-A9485A954F95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{209F0FFD-19E0-40CC-AB57-A9485A954F95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{209F0FFD-19E0-40CC-AB57-A9485A954F95}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -65,5 +71,6 @@ Global
 		{7790AB39-EFF8-475D-8B59-DEB70167EEF3} = {8A1F9370-CE59-4766-B0B3-2546D9CB987F}
 		{9D913C9A-97B4-40E8-A2AD-A32DBD8090B0} = {8A1F9370-CE59-4766-B0B3-2546D9CB987F}
 		{13F189A7-F761-4B57-A207-AB3D9AE69087} = {33F16132-D481-4B62-9B5D-5DA16B839C9B}
+		{209F0FFD-19E0-40CC-AB57-A9485A954F95} = {8A1F9370-CE59-4766-B0B3-2546D9CB987F}
 	EndGlobalSection
 EndGlobal
