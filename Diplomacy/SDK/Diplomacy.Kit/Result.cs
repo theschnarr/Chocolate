@@ -36,6 +36,10 @@ namespace Diplomacy.Kit
         /// </summary>
         public static readonly ResultCode Success = new ResultCode(0, "Success");
         /// <summary>
+        /// Type: <see cref="ResultCode"/><para>Code returned to indicate that an invalid argument was provided.</para>
+        /// </summary>
+        public static readonly ResultCode InvalidArgument = new ResultCode(-100, "Invalid argument specified.");
+        /// <summary>
         /// Type: <see cref="ResultCode"/><para>Code returned to indicate an error when the class has not been properly initialized.</para>
         /// </summary>
         public static readonly ResultCode NotInitialized = new ResultCode(-400, "Class has not been initialized.");

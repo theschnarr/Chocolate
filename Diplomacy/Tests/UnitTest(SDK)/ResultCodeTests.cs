@@ -18,6 +18,12 @@ namespace Diplomacy.Kit.Tests
             Assert.AreEqual<int>(ResultCode.Success.Value, 0);
         }
         [TestMethod]
+        public void ResultCodeInvalidArgumentTest()
+        {
+            Assert.AreEqual<string>(ResultCode.InvalidArgument.DisplayName, "Invalid argument specified.");
+            Assert.AreEqual<int>(ResultCode.InvalidArgument.Value, -100);
+        }
+        [TestMethod]
         public void ResultCodeNotInitializedTest()
         {
             Assert.AreEqual(ResultCode.NotInitialized.DisplayName, "Class has not been initialized.");

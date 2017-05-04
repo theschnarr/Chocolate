@@ -205,7 +205,7 @@ namespace Diplomacy
         protected IEnumerable<ComposablePartCatalog> GetCatalogs()
         {
             List<ComposablePartCatalog> catalogs = new List<ComposablePartCatalog>();
-            //We'll check for built-in clerks, supplied in the executing assembly.
+            //We'll check for built-in plugins, supplied in the executing assembly.
             AssemblyCatalog aCatalog = new AssemblyCatalog(Assembly.GetExecutingAssembly());
             catalogs.Add(aCatalog);
             foreach (var path in _Paths)

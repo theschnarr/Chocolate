@@ -4,17 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{13F189A7-F761-4B57-A207-AB3D9AE69087}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{A8CF3BE7-94F9-4FF7-BF12-2A5C4E702BC7}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PluginDiscovery</RootNamespace>
-    <AssemblyName>PluginDiscovery</AssemblyName>
+    <RootNamespace>FilePlugins</RootNamespace>
+    <AssemblyName>FilePlugins</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -44,21 +41,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MefDiscovery.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="FileClerk.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ReflectionDiscovery.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\SDK\Diplomacy.Kit\Diplomacy.Kit.csproj">
-      <Project>{ca52c1d8-d5ef-4695-ac7b-c793527ed110}</Project>
+    <ProjectReference Include="..\..\..\SDK\Diplomacy.Kit\Diplomacy.Kit.csproj">
+      <Project>{CA52C1D8-D5EF-4695-AC7B-C793527ED110}</Project>
       <Name>Diplomacy.Kit</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>cmd /x /c mkdir "$(SolutionDir)Tests\Plugins\DirectoryDiscovery\"
+copy /Y "$(TargetDir)$(TargetFileName)" "$(SolutionDir)Tests\Plugins\DirectoryDiscovery\$(ProjectName).dll"</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
