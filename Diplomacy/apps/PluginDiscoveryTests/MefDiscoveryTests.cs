@@ -1,118 +1,144 @@
 ﻿using Diplomacy.Kit;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using PluginDiscovery;
 using PluginDiscoveryTests;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.Composition;
+using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PluginDiscovery.Tests
 {
     [TestClass()]
     public class MefDiscoveryTests
     {
-        /// <summary>
-        /// Demo Class used for unit tests of MefDiscovery methods.
-        /// </summary>
-        [Export(typeof(IPlugin))]
-        public class MefSamplePlugin : IPlugin
+        private string MefPluginPath;
+        private string MefPluginSource = @"
+        using System;
+        using Diplomacy.Kit;
+        using System.Collections.Generic;
+        using System.ComponentModel.Composition;
+        namespace PluginDiscovery.Tests
         {
-            public string ID
+            [Export(typeof(IPlugin))]
+            public class MefSamplePlugin : IPlugin
             {
-                get
+                public string ID
                 {
-                    return "MefSamplePlugin";
+                    get
+                    {
+                        return ""MefSamplePlugin"";
+                    }
+                }
+
+                public Result Start()
+                {
+                    return new Result(ResultCode.Success);
+                }
+
+                public Result Stop()
+                {
+                    return new Result(ResultCode.Success);
                 }
             }
-
-            public Result Start()
+            [Export(typeof(IAmbassador))]
+            public class MefSampleAmbassador : IAmbassador
             {
-                return new Result(ResultCode.Success);
+                private List<string> _SupportActions = new List<string>() { ""Magic"" };
+
+                public string ID
+                {
+                    get
+                    {
+                        return ""MefSampleAmbassador"";
+                    }
+                }
+
+                public IEnumerable<string> SupportedActions
+                {
+                    get
+                    {
+                        return _SupportActions;
+                    }
+                }
+
+                public Result Process(string requestData)
+                {
+                    if (String.IsNullOrWhiteSpace(requestData))
+                    {
+                        return new Result(ResultCode.InvalidArgument);
+                    }
+                    return new Result(ResultCode.Success);
+                }
+
+                public Result Start()
+                {
+                    return new Result(ResultCode.Success);
+                }
+
+                public Result Stop()
+                {
+                    return new Result(ResultCode.Success);
+                }
             }
-
-            public Result Stop()
+            [Export(typeof(IClerk))]
+            public class MefSampleClerk : IClerk
             {
-                return new Result(ResultCode.Success);
+                private IConsulRequest _ConsulRequest = null;
+                public string ID
+                {
+                    get
+                    {
+                        return ""MefSampleClerk"";
+                    }
+                }
+
+                public Result SetConsul(IConsulRequest consul)
+                {
+                    if (consul == null)
+                        return new Result(ResultCode.InvalidArgument);
+                    _ConsulRequest = consul;
+                    return new Result();
+                }
+
+                public Result Start()
+                {
+                    return new Result();
+                }
+
+                public Result Stop()
+                {
+                    return new Result();
+                }
+            }
+        }";
+        private PluginTestUtility util = null;
+        public MefDiscoveryTests()
+        {
+            util = new PluginTestUtility();
+            if (!File.Exists(util.PluginTempDirectory + "MefPlugins.dll"))
+            {
+                MefPluginPath = Path.GetDirectoryName(util.GeneratePluginDll(MefPluginSource, "MefPlugins.dll"));
+            }
+            else
+            {
+                MefPluginPath = util.PluginTempDirectory;
             }
         }
-        [Export(typeof(IAmbassador))]
-        public class MefSampleAmbassador : IAmbassador
+        [AssemblyInitialize()]
+        public static void AssemblyInitialize(TestContext context)
         {
-            private List<string> _SupportActions = new List<string>() { "Magic" };
-
-            public string ID
+            //Make sure we remove any previously compiled assemblies.
+            string path = Environment.CurrentDirectory + "\\PluginsTemp\\";
+            if (Directory.Exists(path))
             {
-                get
-                {
-                    return "MefSampleAmbassador";
-                }
-            }
-
-            public IEnumerable<string> SupportedActions
-            {
-                get
-                {
-                    return _SupportActions;
-                }
-            }
-
-            public Result Process(string requestData)
-            {
-                if (String.IsNullOrWhiteSpace(requestData))
-                {
-                    return new Result(ResultCode.InvalidArgument);
-                }
-                return new Result(ResultCode.Success);
-            }
-
-            public Result Start()
-            {
-                return new Result(ResultCode.Success);
-            }
-
-            public Result Stop()
-            {
-                return new Result(ResultCode.Success);
-            }
-        }
-        [Export(typeof(IClerk))]
-        public class MefSampleClerk : IClerk
-        {
-            private IConsulRequest _ConsulRequest = null;
-            public string ID
-            {
-                get
-                {
-                    return "MefSampleClerk";
-                }
-            }
-
-            public Result SetConsul(IConsulRequest consul)
-            {
-                if (consul == null)
-                    return new Result(ResultCode.InvalidArgument);
-                _ConsulRequest = consul;
-                return new Result();
-            }
-
-            public Result Start()
-            {
-                return new Result();
-            }
-
-            public Result Stop()
-            {
-                return new Result();
+                Directory.Delete(path, true);
             }
         }
         [TestMethod()]
         public void LoadPluginsTest()
         {
-            var plugins = MefDiscovery.LoadPlugins<IPlugin>(typeof(MefSamplePlugin).Assembly);
+            var plugins = MefDiscovery.LoadPlugins<IPlugin>(util.GeneratePluginAssembly(MefPluginSource));
             Assert.AreEqual(1, plugins.Count());
             var plugin = plugins.Where(i => i.ID == "MefSamplePlugin").SingleOrDefault();
             Assert.IsNotNull(plugin);
@@ -122,7 +148,7 @@ namespace PluginDiscovery.Tests
         [TestMethod()]
         public void LoadPluginsAmbassadorTest()
         {
-            var plugins = MefDiscovery.LoadPlugins<IAmbassador>(typeof(MefSamplePlugin).Assembly);
+            var plugins = MefDiscovery.LoadPlugins<IAmbassador>(util.GeneratePluginAssembly(MefPluginSource));
             Assert.AreEqual(1, plugins.Count());
             var plugin = plugins.Where(i => i.ID == "MefSampleAmbassador").SingleOrDefault();
             Assert.IsNotNull(plugin);
@@ -135,7 +161,7 @@ namespace PluginDiscovery.Tests
         [TestMethod()]
         public void LoadPluginsClerkTest()
         {
-            var plugins = MefDiscovery.LoadPlugins<IClerk>(typeof(MefSamplePlugin).Assembly);
+            var plugins = MefDiscovery.LoadPlugins<IClerk>(util.GeneratePluginAssembly(MefPluginSource));
             Assert.AreEqual(1, plugins.Count());
             var plugin = plugins.Where(i => i.ID == "MefSampleClerk").SingleOrDefault();
             Assert.IsNotNull(plugin);
@@ -148,31 +174,32 @@ namespace PluginDiscovery.Tests
         [TestMethod]
         public void LoadPluginsDirectoryTest()
         {
-            string directoryPath = PluginDiscoveryUtilities.GetPluginDirectoryPath();
-            var plugins = MefDiscovery.LoadPlugins<IPlugin>(directoryPath);
-            Assert.AreEqual(0, plugins.Count());
+            var plugins = MefDiscovery.LoadPlugins<IPlugin>(MefPluginPath);
+            Assert.AreEqual(1, plugins.Count());
+            var plugin = plugins.Where(i => i.ID == "MefSamplePlugin").SingleOrDefault();
+            Assert.IsNotNull(plugin);
+            Assert.AreEqual(ResultCode.Success, plugin.Start().Code);
+            Assert.AreEqual(ResultCode.Success, plugin.Stop().Code);
         }
         [TestMethod]
         public void LoadPluginsDirectoryAmbassadorTest()
         {
-            string directoryPath = PluginDiscoveryUtilities.GetPluginDirectoryPath();
-            var plugins = MefDiscovery.LoadPlugins<IAmbassador>(directoryPath);
+            var plugins = MefDiscovery.LoadPlugins<IAmbassador>(MefPluginPath);
             Assert.AreEqual(1, plugins.Count());
-            var plugin = plugins.Where(i => i.ID == "WordCountAmbassador").SingleOrDefault();
+            var plugin = plugins.Where(i => i.ID == "MefSampleAmbassador").SingleOrDefault();
             Assert.IsNotNull(plugin);
             Assert.AreEqual(ResultCode.Success, plugin.Start().Code);
             Assert.AreEqual(ResultCode.Success, plugin.Stop().Code);
             Assert.AreEqual(ResultCode.InvalidArgument, plugin.Process("").Code);
             Assert.AreEqual(ResultCode.Success, plugin.Process("Amazing JSON Code here").Code);
-            CollectionAssert.AreEquivalent(new List<String>() { "WordCount" }, plugin.SupportedActions.ToList());
+            CollectionAssert.AreEquivalent(new List<String>() { "Magic" }, plugin.SupportedActions.ToList());
         }
         [TestMethod]
         public void LoadPluginsDirectoryClerkTest()
         {
-            string directoryPath = PluginDiscoveryUtilities.GetPluginDirectoryPath();
-            var plugins = MefDiscovery.LoadPlugins<IClerk>(directoryPath);
+            var plugins = MefDiscovery.LoadPlugins<IClerk>(MefPluginPath);
             Assert.AreEqual(1, plugins.Count());
-            var plugin = plugins.Where(i => i.ID == "FileClerk").SingleOrDefault();
+            var plugin = plugins.Where(i => i.ID == "MefSampleClerk").SingleOrDefault();
             Assert.IsNotNull(plugin);
             Assert.AreEqual(ResultCode.Success, plugin.Start().Code);
             Assert.AreEqual(ResultCode.Success, plugin.Stop().Code);

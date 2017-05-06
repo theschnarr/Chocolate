@@ -68,10 +68,10 @@ namespace PluginDiscovery
                 var dllFiles = Directory.GetFiles(directory, "*.dll");
                 foreach (var dllFile in dllFiles)
                 {
-                    //For each file, we need to load the dll into the application as a .NET Assembly, using reflection.
-                    AssemblyName aName = AssemblyName.GetAssemblyName(dllFile);
-                    //Once we have the AssemblyName, we can use that to load the assembly.
-                    Assembly assembly = Assembly.Load(aName);
+                    //Read the contents of the dll into memory.  This will allow us to update dlls even if they're actively plugged in to the application.
+                    byte[] bytes = File.ReadAllBytes(dllFile);
+                    //Once we have the byte array, we can use that to load the assembly.
+                    Assembly assembly = Assembly.Load(bytes);
                     //Now that we have the assembly loaded, we can pass it to our LoadPlugins<T>(Assembly) overload to gather all viable plugin instances.
                     var aPlugins = LoadPlugins<T>(assembly);
                    
