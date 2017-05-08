@@ -20,7 +20,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diplomacy.Kit", "SDK\Diplom
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{8A1F9370-CE59-4766-B0B3-2546D9CB987F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest(SDK)", "Tests\UnitTest(SDK)\UnitTest(SDK).csproj", "{7790AB39-EFF8-475D-8B59-DEB70167EEF3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diplomacy.KitTests", "Tests\UnitTest(SDK)\Diplomacy.KitTests.csproj", "{7790AB39-EFF8-475D-8B59-DEB70167EEF3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiplomacyTests", "DiplomacyTests\DiplomacyTests.csproj", "{9D913C9A-97B4-40E8-A2AD-A32DBD8090B0}"
 EndProject

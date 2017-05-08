@@ -44,6 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BuiltInMEFPlugin.cs" />
+    <Compile Include="BuiltInPlugin.cs" />
     <Compile Include="MefDiscovery.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
