@@ -240,3 +240,5 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+/Diplomacy/Tests/Plugins/DirectoryDiscovery/FilePlugins.dll
+/Diplomacy/Tests/Plugins/DirectoryDiscovery/TextPlugins.dll

@@ -1,27 +1,28 @@
 ﻿using Diplomacy.Kit;
 using Diplomacy.Kit.MEF;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PluginDiscovery
+namespace ExternalPlugin
 {
     /// <summary>
     /// Used for plugin demonstration via MEF.
     /// </summary>
-    [Export(typeof(IPlugin))] 
+    [Export(typeof(IPlugin))]
     //Identifies this plugin as exporting the IPlugin interface, 
     //while using the ID and the Provider as metadata.
-    public class BuiltInMefPlugin : IPlugin
+    public class ExternalMefPlugin : IPlugin
     {
         /// <summary>
-        /// Creates a new instance of <see cref="BuiltInMefPlugin"/>.
+        /// Creates a new instance of <see cref="ExternalMefPlugin"/>.
         /// </summary>
-        public BuiltInMefPlugin()
+        public ExternalMefPlugin()
         {
-            Console.WriteLine("New instance of BuiltInMefPlugin created.");
+            Console.WriteLine("New instance of ExternalMefPlugin created.");
         }
         /// <summary>
         /// Type: <see cref="String"/><para>The unique ID of the plugin.</para>
@@ -30,7 +31,7 @@ namespace PluginDiscovery
         {
             get
             {
-                return "BuiltInMEFPlugin";
+                return "ExternalMefPlugin";
             }
         }
         /// <summary>
