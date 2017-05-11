@@ -72,10 +72,6 @@
       <Project>{A8CF3BE7-94F9-4FF7-BF12-2A5C4E702BC7}</Project>
       <Name>FilePlugins</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TextPlugins\TextPlugins.csproj">
-      <Project>{1D81B896-665D-497D-9D2D-18D074F54829}</Project>
-      <Name>TextPlugins</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

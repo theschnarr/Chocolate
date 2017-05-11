@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using TextPlugins;
+using FilePlugins;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Diplomacy.Kit;
 
-namespace TextPlugins.Tests
+namespace FilePlugins.Tests
 {
     [TestClass()]
     public class WordCountAmbassadorTests
