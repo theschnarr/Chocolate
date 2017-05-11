@@ -12,7 +12,7 @@ namespace ExternalPlugin
     /// <summary>
     /// Used for plugin demonstration via MEF.
     /// </summary>
-    [Export(typeof(IPlugin))]
+    [ExportPlugin("ExternalMefPlugin", "DiscoveryDemo")]
     //Identifies this plugin as exporting the IPlugin interface, 
     //while using the ID and the Provider as metadata.
     public class ExternalMefPlugin : IPlugin

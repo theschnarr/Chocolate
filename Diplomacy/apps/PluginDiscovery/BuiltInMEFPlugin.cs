@@ -11,7 +11,7 @@ namespace PluginDiscovery
     /// <summary>
     /// Used for plugin demonstration via MEF.
     /// </summary>
-    [Export(typeof(IPlugin))] 
+    [ExportPlugin("BuiltInMefPlugin", "DiscoveryDemo")]
     //Identifies this plugin as exporting the IPlugin interface, 
     //while using the ID and the Provider as metadata.
     public class BuiltInMefPlugin : IPlugin
@@ -30,7 +30,7 @@ namespace PluginDiscovery
         {
             get
             {
-                return "BuiltInMEFPlugin";
+                return "BuiltInMefPlugin";
             }
         }
         /// <summary>

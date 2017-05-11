@@ -46,7 +46,9 @@
   <ItemGroup>
     <Compile Include="BuiltInMefPlugin.cs" />
     <Compile Include="BuiltInPlugin.cs" />
+    <Compile Include="Demos.cs" />
     <Compile Include="MefDiscovery.cs" />
+    <Compile Include="PluginExtensions.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReflectionDiscovery.cs" />
